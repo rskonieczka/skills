@@ -54,12 +54,15 @@ Przy opracowaniu zmiennych korzystaj z najwyżej dostępnego źródła prawdy dl
 
 Hierarchia źródeł:
 
-1. Materiały dostarczone przez użytkownika i aktywne źródła projektu.
+1. Materiały dostarczone przez użytkownika i dokumentacja projektu w `.ai-kb` (architektura, konwencje, decyzje, pułapki).
 2. `notebooklm-mcp`, jeżeli zadanie dotyczy notebooków, materiałów badawczych, źródeł użytkownika, syntez albo wiedzy zgromadzonej w NotebookLM.
 3. `context7`, jeżeli zadanie dotyczy bibliotek, frameworków, SDK, API, narzędzi CLI, chmur, konfiguracji lub aktualnej dokumentacji technicznej.
-4. Inne oficjalne źródła dokumentacji producenta, projektu, instytucji, standardu lub API.
-5. Kod źródłowy, pliki projektu lub dane wejściowe jako źródło weryfikacji implementacyjnej.
-6. Wniosek agenta, wyłącznie jako `agent_inference` albo `hypothesis`.
+4. `Memgraph MCP`, jeżeli zadanie dotyczy relacji między encjami, mapy zależności, grafu wywołań albo analizy architektury przez Cypher.
+5. Inne oficjalne źródła dokumentacji producenta, projektu, instytucji, standardu lub API.
+6. Kod źródłowy, pliki projektu lub dane wejściowe jako źródło weryfikacji implementacyjnej.
+7. Wniosek agenta, wyłącznie jako `agent_inference` albo `hypothesis`.
+
+Konflikty źródeł i hierarchia rozstrzygania: patrz `_shared/zrodla-i-narzedzia.md`.
 
 Reguły źródeł:
 
@@ -68,6 +71,13 @@ Reguły źródeł:
 - Jeżeli korzystasz z `notebooklm-mcp`, `context7` lub innego oficjalnego źródła, wskaż nazwę źródła, zakres wykorzystania i czego dotyczyło potwierdzenie.
 - Jeżeli oficjalne źródła są sprzeczne z danymi użytkownika albo pamięcią projektu, wskaż rozbieżność i nie rozstrzygaj jej bez uzasadnienia.
 - Nie zastępuj oficjalnej dokumentacji domysłem, gdy odpowiednie źródło jest dostępne.
+
+## 3.1. Narzędzia lokalne
+
+- `desktop-commander` (pełne) - lokalne przeszukiwanie kodu, `.ai-kb`, `docs`, formaty binarne, sesje REPL.
+- `Memgraph MCP` (warstwa grafowa) - relacje między encjami, graf zależności, analiza architektury przez Cypher.
+
+Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
 ## 4. Minimalne dane wejściowe
 

@@ -99,7 +99,16 @@ Dostępne tryby:
 - `bezpieczeństwa` - ryzyka prawne, techniczne, prywatnościowe, operacyjne albo zgodnościowe.
 - `instrukcyjny` - procedury krok po kroku, kompletność instrukcji i wykonalność działań.
 
-## Polityka źródeł
+## Źródła prawdy
+
+1. `.ai-kb` - dokumentacja projektu: architektura, konwencje, decyzje, pułapki.
+2. Context7 - dokumentacja bibliotek, frameworków i zewnętrznych API.
+3. notebooklm-mcp - notebooki i źródła badawcze użytkownika.
+4. Memgraph MCP - warstwa grafowa: relacje, mapa zależności, graf wywołań, analiza architektury przez Cypher.
+
+Stosuj w podanej kolejności; niższe poziomy uruchamiaj dopiero, gdy wyższe nie dają odpowiedzi. Konflikty źródeł i hierarchia: patrz `_shared/zrodla-i-narzedzia.md`.
+
+### Polityka oceny źródłowej
 
 1. Najpierw oceniaj odpowiedź albo artefakt względem `PYTANIA ŹRÓDŁOWEGO`, `ODPOWIEDZI DO OCENY` albo `ARTEFAKTU DO AUDYTU` i dostarczonego kontekstu.
 2. Jeśli użytkownik dostarczył źródła, traktuj je jako główną podstawę oceny faktograficznej.
@@ -109,6 +118,13 @@ Dostępne tryby:
 6. Jeśli użytkownik wyraźnie prosi o aktualną dokumentację, najnowsze źródła albo weryfikację zewnętrzną, traktuj to jako zgodę na użycie adekwatnych źródeł zewnętrznych.
 7. Oddzielaj: fakt potwierdzony, sprzeczność ze źródłem, lukę w odpowiedzi, hipotezę i ocenę poza zakresem.
 8. Jeśli źródła są sprzeczne, wskaż konflikt i nie rozstrzygaj go bez uzasadnienia.
+
+## Narzędzia lokalne
+
+- `desktop-commander` (pełne) - lokalne przeszukiwanie kodu, `.ai-kb`, `docs`, formaty binarne, sesje REPL.
+- `Memgraph MCP` (warstwa grafowa) - relacje między encjami, graf zależności, analiza architektury przez Cypher.
+
+Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
 ## Wymiary audytu
 

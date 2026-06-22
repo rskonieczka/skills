@@ -8,7 +8,7 @@ Jest dyspozycyjna, ponieważ opisuje zdolność osoby do określonego działania
 
 Jest zaliczana do efektów uczenia się, obok wiedzy i kompetencji społecznych.
 
-W Europejskiej Ramie Kwalifikacji umiejętności są definiowane jako zdolność stosowania wiedzy i korzystania z know-how w celu wykonywania zadań oraz rozwiązywania problemów. Mogą mieć charakter poznawczy lub praktyczny.
+W Europejskiej Ramie Kwalifikacji umiejętności są definiowane jako zdolność stosowania wiedzy i korzystania z know-how w celu wykonywania zadań oraz rozwiązywania problemów. Mogą mieć charakter poznawczy lub praktyczny. [1]
 
 **Pewność rozpoznania: wysoki.**
 
@@ -30,7 +30,7 @@ Definicja ta łączy pięć elementów:
 - warunki wykonania,
 - kryterium oceny rezultatu.
 
-W polskim Zintegrowanym Systemie Kwalifikacji umiejętności są traktowane jako jeden z trzech podstawowych rodzajów efektów uczenia się, obok wiedzy i kompetencji społecznych. Efekty te mogą zostać nabyte w edukacji formalnej, pozaformalnej, pracy zawodowej lub poprzez samodzielne doświadczenie.
+W polskim Zintegrowanym Systemie Kwalifikacji umiejętności są traktowane jako jeden z trzech podstawowych rodzajów efektów uczenia się, obok wiedzy i kompetencji społecznych. Efekty te mogą zostać nabyte w edukacji formalnej, pozaformalnej, pracy zawodowej lub poprzez samodzielne doświadczenie. [2]
 
 ### 1.2. Kategoria
 
@@ -210,7 +210,7 @@ Elementy umiejętności są współzależne.
 - Powtarzalna praktyka zwiększa płynność wykonania.
 - Zmienność ćwiczeń może wspierać adaptację i transfer, choć jej skuteczność zależy od rodzaju zadania oraz poziomu osoby uczącej się.
 
-Badania nad uczeniem motorycznym wskazują, że sposób organizacji ćwiczeń i informacji zwrotnej wpływa nie tylko na chwilowy wynik, ale również na utrzymanie oraz przenoszenie umiejętności do nowych warunków. Nie istnieje jednak jedna metoda ćwiczenia optymalna dla wszystkich zadań.
+Badania nad uczeniem motorycznym wskazują, że sposób organizacji ćwiczeń i informacji zwrotnej wpływa nie tylko na chwilowy wynik, ale również na utrzymanie oraz przenoszenie umiejętności do nowych warunków. Nie istnieje jednak jedna metoda ćwiczenia optymalna dla wszystkich zadań. [3]
 
 ### 3.2. Relacje zewnętrzne
 
@@ -254,7 +254,7 @@ W organizacji jest:
 - przedmiotem rekrutacji i rozwoju,
 - źródłem jakości lub ryzyka operacyjnego.
 
-W Polskiej Ramie Kwalifikacji wiedza, umiejętności i kompetencje społeczne służą do opisywania oraz porównywania kwalifikacji na ośmiu poziomach.
+W Polskiej Ramie Kwalifikacji wiedza, umiejętności i kompetencje społeczne służą do opisywania oraz porównywania kwalifikacji na ośmiu poziomach. [2]
 
 #### Wejścia
 
@@ -527,7 +527,7 @@ Silnie utrwalony sposób działania może utrudniać zauważenie, że sytuacja w
 
 #### Neutralność etyczna
 
-Umiejętność określa skuteczność wykonania, ale sama nie przesądza, czy działanie jest właściwe. Ocena odpowiedzialności, celu i wartości należy do szerszej kategorii kompetencji oraz postaw. OECD traktuje kompetencję jako połączenie wiedzy, umiejętności, postaw i wartości stosowanych wobec określonych wymagań.
+Umiejętność określa skuteczność wykonania, ale sama nie przesądza, czy działanie jest właściwe. Ocena odpowiedzialności, celu i wartości należy do szerszej kategorii kompetencji oraz postaw. OECD traktuje kompetencję jako połączenie wiedzy, umiejętności, postaw i wartości stosowanych wobec określonych wymagań. [4]
 
 ### 6.4. Warunki brzegowe
 
@@ -599,3 +599,12 @@ Struktura umiejętności obejmuje rozpoznanie sytuacji, wybór sposobu działani
 Umiejętność rozwija się dzięki praktyce, informacji zwrotnej i wykorzystaniu w rzeczywistych sytuacjach. Może osiągać wysoki poziom płynności oraz częściowej automatyzacji, ale pozostaje zależna od kontekstu. Może również ulec osłabieniu wskutek nieużywania albo utracić aktualność w wyniku zmian technologicznych i organizacyjnych.
 
 Najważniejszym ograniczeniem tego pojęcia jest trudność oddzielenia trwałej zdolności od chwilowego wykonania. Dlatego wiarygodne stwierdzenie, że osoba posiada daną umiejętność, powinno opierać się na obserwacji powtarzalnego, samodzielnego i zgodnego ze standardem działania w warunkach odpowiadających rzeczywistemu zastosowaniu.
+
+---
+
+## Źródła
+
+1. Zalecenie Rady z dnia 22 maja 2017 r. w sprawie europejskich ram kwalifikacji dla uczenia się przez całe życie (EU 2017/C 189/03). Dostęp: <https://kwalifikacje.gov.pl/download/Prawo_o_ZSK/CELEX_32017H0615%2801%29_PL_TXT.pdf>
+2. Zintegrowany System Kwalifikacji - Podstawowe pojęcia. Efekty uczenia się. Dostęp: <https://kwalifikacje.gov.pl/indywidualny/wiedza/podstawowe-pojecia/efekty-uczenia-sie/> oraz Ustawa z dnia 22 grudnia 2015 r. o Zintegrowanym Systemie Kwalifikacji (Dz.U. 2024 poz. 1606).
+3. Arnista P., Werbalna informacja zwrotna a skuteczność uczenia się motorycznego. Rozprawa doktorska, AWF Kraków. Dostęp: <https://awf.edu.pl/__data/assets/pdf_file/0018/52146/P.Arnista-rozprawa-dr.pdf>
+4. OECD (2019), OECD Learning Compass 2030: A Series of Concept Notes. OECD Publishing, Paryż. Odniesienie polskie: Centrum Edukacji Obywatelskiej, Kompetencje przyszłości. Dostęp: <https://ceo.org.pl/kompetencje-przyszlosci/>
