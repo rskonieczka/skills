@@ -16,6 +16,8 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 │   └── SKILL.md
 ├── sprawdzenie/             # Wielowymiarowy audyt odpowiedzi i artefaktow AI
 │   └── SKILL.md
+├── weryfikacja/             # Weryfikacja faktow, twierdzen i zrodel wzgledem hierarchii zrodel prawdy
+│   └── SKILL.md
 ├── zmienne/                 # Uniwersalny kontrakt zmiennych dla agentow
 │   └── SKILL.md
 ├── umiejetnosc_podstawy.md  # Przyklad analizy pojecia "umiejetnosc" (wyjatek: nie jest skillem)
@@ -26,7 +28,7 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 
 Plik `_shared/zrodla-i-narzedzia.md` zawiera kanoniczna wersje sekcji `Zrodla prawdy` i `Narzedzia lokalne` (hierarchia zrodel, tabele narzedzi `desktop-commander` i `Memgraph MCP`, workflow przeszukiwania i grafowy).
 
-Skille `analiza`, `sprawdzenie`, `zmienne` i `context7` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
+Skille `analiza`, `sprawdzenie`, `weryfikacja`, `zmienne` i `context7` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
 
 Skill `jak` zachowuje pelne sekcje inline (jest wzorcem referencyjnym dla `_shared/`).
 
@@ -48,7 +50,6 @@ Kazdy skill musi zawierac plik `SKILL.md` z frontmatterem YAML. Obslugiwane pola
 Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalnymi zasadami stylu.
 
 ## Katalog skillow
-
 ### analiza
 
 - **Plik:** `analiza/SKILL.md`
@@ -85,6 +86,17 @@ Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalny
 - **Argument:** `[PYTANIE ZRODLOWE] [ODPOWIEDZ DO OCENY albo ARTEFAKT DO AUDYTU] [opcjonalnie: TRYB AUDYTU, ZRODLA, KRYTERIA]`
 - **Tryby audytu:** `szybki`, `pelny` (domyslny), `zrodlowy`, `logiczny`, `ontologiczny`, `techniczny`, `decyzyjny`, `bezpieczenstwa`, `instrukcyjny`.
 - **Wymiary audytu:** Zgodnosc z pytaniem, Kompletnosc, Poprawnosc logiczna, Poprawnosc merytoryczna, Spojnosc pojeciowa, Bezpieczenstwo, Uzytecznosc.
+
+### weryfikacja
+
+- **Plik:** `weryfikacja/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Weryfikuje fakty, twierdzenia, hipotezy i zrodla wzgledem hierarchii zrodel prawdy. Sprawdza status prawdziwosciowy twierdzen, oznacza konflikty zrodel i braki dowodowe.
+- **Argument:** `[TWIERDZENIE LUB ZBIOR TWIERDZEN] [opcjonalnie: KRYTERIUM, ZRODLA, TRYB WERYFIKACJI]`
+- **Tryby weryfikacji:** `szybki`, `pelny` (domyslny), `zrodlowy`, `techniczny`, `cross-source`.
+- **Statusy werdyktu:** `potwierdzony`, `obalony`, `niezweryfikowany`, `sprzeczny`.
+- **Odróżnienie od `sprawdzenie`:** `sprawdzenie` audytuje odpowiedz AI pod katem kompletnosci, logiki, ontologii i bezpieczenstwa; `weryfikacja` sprawdza status prawdziwosciowy konkretnych twierdzen wobec zrodel.
+- **Wspolpraca:** Context7 MCP (dokumentacja bibliotek i API), Serena MCP (kod zrodlowy), desktop-commander (pliki lokalne), Memgraph MCP (warstwa grafowa).
 
 ### zmienne
 
