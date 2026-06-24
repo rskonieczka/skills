@@ -14,6 +14,8 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 │   └── SKILL.md
 ├── jak/                     # Zasady odpowiedzi na pytanie "jak"
 │   └── SKILL.md
+├── planuj/                  # Proces planowania celu, zadania lub projektu
+│   └── SKILL.md
 ├── sprawdzenie/             # Wielowymiarowy audyt odpowiedzi i artefaktow AI
 │   └── SKILL.md
 ├── weryfikacja/             # Weryfikacja faktow, twierdzen i zrodel wzgledem hierarchii zrodel prawdy
@@ -21,6 +23,7 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 ├── zmienne/                 # Uniwersalny kontrakt zmiennych dla agentow
 │   └── SKILL.md
 ├── umiejetnosc_podstawy.md  # Przyklad analizy pojecia "umiejetnosc" (wyjatek: nie jest skillem)
+├── _propmpt_tworzenia_skill.md  # Uniwersalny prompt do tworzenia i sprawdzania skilli (plik pomocniczy)
 └── README.md                # Niniejszy plik
 ```
 
@@ -28,7 +31,7 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 
 Plik `_shared/zrodla-i-narzedzia.md` zawiera kanoniczna wersje sekcji `Zrodla prawdy` i `Narzedzia lokalne` (hierarchia zrodel, tabele narzedzi `desktop-commander` i `Memgraph MCP`, workflow przeszukiwania i grafowy).
 
-Skille `analiza`, `sprawdzenie`, `weryfikacja`, `zmienne` i `context7` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
+Skille `analiza`, `sprawdzenie`, `weryfikacja`, `planuj`, `zmienne` i `context7` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
 
 Skill `jak` zachowuje pelne sekcje inline (jest wzorcem referencyjnym dla `_shared/`).
 
@@ -78,6 +81,17 @@ Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalny
 - **Narzedzia lokalne:** `desktop-commander` (przeszukiwanie plikow), Memgraph MCP (warstwa grafowa).
 - **Zapis wiedzy:** Ustalenia z Context7 i notebooklm-mcp zapisywane do `.ai-kb`.
 
+### planuj
+
+- **Plik:** `planuj/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Przeprowadza proces planowania celu, zadania lub projektu z ustaleniem krokow, zasobow, ryzyk i kryteriow sukcesu. Przeksztalca zamiar w wykonalny plan dzialania.
+- **Argument:** `[CEL DO ZAPLANOWANIA] [opcjonalnie: KONTEKST, OGRANICZENIA, HORYZONT, TRYB]`
+- **Tryby planowania:** `szybki`, `pelny` (domyslny), `doglebny`
+- **Horyzonty:** `operacyjny` (dni/tygodnie), `taktyczny` (miesiace), `strategiczny` (kwartaly/lata)
+- **Odróżnienie od `jak`:** `jak` okresla zasady odpowiedzi na pytanie "jak"; `planuj` prowadzi ustrukturyzowany proces planowania z krokami, zasobami, ryzykami i kryteriami sukcesu.
+- **Wspolpraca:** Context7 MCP (dokumentacja), Serena MCP (kod zrodlowy), desktop-commander (pliki lokalne), Memgraph MCP (warstwa grafowa).
+
 ### sprawdzenie
 
 - **Plik:** `sprawdzenie/SKILL.md`
@@ -113,6 +127,12 @@ Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalny
 ### umiejetnosc_podstawy.md
 
 Przykladowy artefakt wygenerowany przez skilla `analiza` dla obiektu "umiejetnosc". Demonstruje pelna strukture analizy: rozpoznanie typu, tozsamosc, struktura, relacje, zachowanie, ocena i zastosowania. Nie jest skillem i nie posiada frontmattera.
+
+## Plik pomocniczy
+
+### _propmpt_tworzenia_skill.md
+
+Uniwersalny prompt do tworzenia i sprawdzania skilli. Zawiera analize pojecia "skill" (przeprowadzona skillem `analiza`), mapowanie pojecia "umiejetnosc" na "skill", Prompt A (tworzenie skilli) oraz Prompt B (sprawdzanie utworzonych skilli), wraz z wyjasnieniami kluczowych decyzji projektowych. Pelni role wzorca referencyjnego dla tworzenia i walidacji nowych skilli. Prefiks `_` oznacza plik pomocniczy - nie jest skillem wywolywalnym, nie posiada frontmattera i nie pojawia sie w katalogu skilli.
 
 ## Zalecenia eksploatacyjne
 
