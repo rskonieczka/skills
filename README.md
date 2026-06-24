@@ -50,7 +50,6 @@ Kazdy skill musi zawierac plik `SKILL.md` z frontmatterem YAML. Obslugiwane pola
 Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalnymi zasadami stylu.
 
 ## Katalog skillow
-
 ### analiza
 
 - **Plik:** `analiza/SKILL.md`
