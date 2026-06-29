@@ -12,6 +12,8 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 │   └── SKILL.md
 ├── context7/                # Pobieranie aktualnej dokumentacji bibliotek
 │   └── SKILL.md
+├── dobierz/                 # Kontekstowy dobór wariantu, narzędzia, metody albo rozwiązania
+│   └── SKILL.md
 ├── jak/                     # Zasady odpowiedzi na pytanie "jak"
 │   └── SKILL.md
 ├── planuj/                  # Proces planowania celu, zadania lub projektu
@@ -31,7 +33,7 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 
 Plik `_shared/zrodla-i-narzedzia.md` zawiera kanoniczna wersje sekcji `Zrodla prawdy` i `Narzedzia lokalne` (hierarchia zrodel, tabele narzedzi `desktop-commander` i `Memgraph MCP`, workflow przeszukiwania i grafowy).
 
-Skille `analiza`, `sprawdzenie`, `weryfikacja`, `planuj`, `zmienne` i `context7` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
+Skille `analiza`, `sprawdzenie`, `weryfikacja`, `planuj`, `zmienne`, `context7` i `dobierz` zawieraja kompaktowa liste 4 zrodel prawdy i 2 narzedzi lokalnych inline oraz referencje do `_shared/zrodla-i-narzedzia.md` na szczegoly, tabele i workflowy. Aktualizacja tabel i workflow w `_shared/` wystarczy do zsynchronizowania wszystkich skilli.
 
 Skill `jak` zachowuje pelne sekcje inline (jest wzorcem referencyjnym dla `_shared/`).
 
@@ -70,6 +72,16 @@ Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalny
 - **Tryb:** `always_on`
 - **Narzedzia:** `mcp3_resolve-library-id`, `mcp3_query-docs`
 - **Limity:** Maksymalnie 3 wywolania resolve i 3 wywolania query na pytanie.
+
+### dobierz
+
+- **Plik:** `dobierz/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Dobiera najlepszy wariant działania, narzędzie, metodę, źródło, rozwiązanie albo opcję na podstawie celu, kontekstu, kryteriów, ograniczeń i dostępnych źródeł.
+- **Argument:** `[CEL DOBORU] [opcjonalnie: WARIANTY, KONTEKST, KRYTERIA, OGRANICZENIA, ŹRÓDŁA, TRYB DOBORU]`
+- **Tryby doboru:** `szybki`, `pelny`, `doglebny`, `kryterialny`, `zrodlowy`, `techniczny`, `architektoniczny`, `strategiczny`, `ryzyka`, `preferencyjny`, `hybrydowy`.
+- **Odróżnienie od `planuj`:** `dobierz` wybiera wariant do kontekstu; `planuj` ustala kroki realizacji po wyborze celu lub wariantu.
+- **Wspolpraca:** Context7 MCP (dokumentacja techniczna), Serena MCP (kod i pamięć projektu), desktop-commander (pliki lokalne), Memgraph MCP (warstwa grafowa).
 
 ### jak
 

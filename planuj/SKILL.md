@@ -1,5 +1,5 @@
 ---
-name: zaplanuj
+name: planuj
 description: Przeprowadza proces planowania celu, zadania lub projektu z ustaleniem kroków, zasobów, ryzyk i kryteriów sukcesu.
 version: 1.0.0
 argument-hint: "[CEL DO ZAPLANOWANIA] [opcjonalnie: KONTEKST, OGRANICZENIA, HORYZONT, TRYB]"
@@ -7,7 +7,6 @@ triggers:
   - user
   - model
 ---
-
 # Workflow planowania celu, zadania lub projektu
 
 Celem tego workflowu jest przeprowadzenie ustrukturyzowanego procesu planowania, który przekształca cel albo zamiar w wykonalny plan działania z jawnymi krokami, zasobami, ryzykami i kryteriami sukcesu.
@@ -21,6 +20,7 @@ Przyjmij rolę eksperta od planowania strategicznego, operacyjnego i projektoweg
 ## Kiedy stosować
 
 Stosuj, gdy użytkownik chce:
+
 - zaplanować realizację celu, zadania lub projektu,
 - przekształcić zamiar w wykonalny plan kroków,
 - ustalić kolejność działań i alokację zasobów,
@@ -32,6 +32,7 @@ Stosuj, gdy użytkownik chce:
 ## Kiedy nie stosować
 
 Nie stosuj, gdy:
+
 - użytkownik chce przeanalizować obiekt albo pojęcie - użyj skilla `analiza`,
 - użytkownik chce zweryfikować twierdzenia - użyj skilla `weryfikacja`,
 - użytkownik chce dokonać audytu odpowiedzi AI - użyj skilla `sprawdzenie`,
@@ -46,9 +47,11 @@ Planowanie prowadź i zwracaj wyłącznie po polsku, zgodnie z globalnymi zasada
 ## Wejście
 
 Wymagane:
+
 - `CEL DO ZAPLANOWANIA` - co ma zostać osiągnięte.
 
 Opcjonalnie:
+
 - `KONTEKST` - środowisko, sytuacja, ograniczenia,
 - `OGRANICZENIA` - budżet, czas, zasoby, technologia, zespół,
 - `HORYZONT` - `operacyjny` (dni/tygodnie), `taktyczny` (miesiące), `strategiczny` (kwartały/lata),
@@ -84,6 +87,7 @@ Jeśli użytkownik nie wskaże trybu, zastosuj tryb `pełny`.
 Stosuj w podanej kolejności; niższe poziomy uruchamiaj dopiero, gdy wyższe nie dają odpowiedzi. Konflikty źródeł, hierarchia i reguły uzupełniające: patrz `_shared/zrodla-i-narzedzia.md`.
 
 Reguły specyficzne dla planowania:
+
 - Plan opieraj na zweryfikowanych informacjach o projekcie i technologii.
 - Jeśli informacja jest kluczowa dla planu, ale niezweryfikowana, oznacz to jawne i wskaż ryzyko.
 - Nie zakładaj dostępności zasobów, narzędzi ani uprawnień bez potwierdzenia.
@@ -100,6 +104,7 @@ Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zro
 Najpierw rozpoznaj, jaki typ planowania jest wymagany. Nie zakładaj z góry, że każdy plan ma tę samą strukturę.
 
 Możliwe typy planu:
+
 - plan zadania (pojedyncze zadanie techniczne lub biznesowe),
 - plan projektu (wieloetapowe przedsięwzięcie z zespołem i zasobami),
 - plan migracji / wdrożenia (zmiana stanu systemu lub organizacji),
@@ -112,6 +117,7 @@ Możliwe typy planu:
 Po rozpoznaniu typu planu dostosuj zakres planowania. Uwzględniaj wyłącznie te elementy, które mają znaczenie dla danego typu.
 
 Zasady adaptacji:
+
 - Pomijaj sekcje nie mające zastosowania, z jawnym oznaczeniem `Nie dotyczy dla tego typu planu.`
 - Twórz sekcje specyficzne dla typu planu, jeśli są istotne (np. `Strategia rollbacku` dla migracji, `Harmonogram wydania` dla release'u).
 - Stosuj tabele tam, gdzie zwiększają czytelność (kroki, zasoby, ryzyka, metryki).
@@ -163,9 +169,9 @@ Jeśli pewność jest niższa niż wysoki, wskaż, czego brakuje do pewniejszego
 
 Przedstaw założenia w tabeli:
 
-| Założenie | Status | Wpływ na plan, jeśli błędne |
-| --- | --- | --- |
-| ... | zweryfikowane / hipoteza / niezweryfikowane | ... |
+| Założenie | Status                                      | Wpływ na plan, jeśli błędne |
+| ----------- | ------------------------------------------- | ------------------------------- |
+| ...         | zweryfikowane / hipoteza / niezweryfikowane | ...                             |
 
 ---
 
@@ -207,9 +213,9 @@ Jeśli ma zastosowanie, przedstaw schemat zależności w bloku `text`.
 
 Przedstaw kroki w tabeli:
 
-| Krok | Opis | Zależności | Typ | Szacowany czas |
-| --- | --- | --- | --- | --- |
-| ... | ... | ... | sekwencyjny / równoległy | ... |
+| Krok | Opis | Zależności | Typ                        | Szacowany czas |
+| ---- | ---- | ------------ | -------------------------- | -------------- |
+| ...  | ...  | ...          | sekwencyjny / równoległy | ...            |
 
 ### 3.3. Punkty kontrolne
 
@@ -244,9 +250,9 @@ Jeśli ma zastosowanie, przedstaw schemat planu w bloku `text` pokazujący przep
 
 Przedstaw zasoby w tabeli:
 
-| Zasób | Typ | Wymagana ilość | Dostępność | Ryzyko niedostępności |
-| --- | --- | --- | --- | --- |
-| ... | ludzki / techniczny / czasowy / budżetowy | ... | potwierdzona / niezweryfikowana | ... |
+| Zasób | Typ                                        | Wymagana ilość | Dostępność                   | Ryzyko niedostępności |
+| ------ | ------------------------------------------ | ---------------- | ------------------------------- | ----------------------- |
+| ...    | ludzki / techniczny / czasowy / budżetowy | ...              | potwierdzona / niezweryfikowana | ...                     |
 
 ---
 
@@ -260,9 +266,9 @@ Przedstaw zasoby w tabeli:
 
 Przedstaw ryzyka w tabeli:
 
-| Ryzyko | Prawdopodobieństwo | Wpływ | Priorytet | Strategia reagowania |
-| --- | --- | --- | --- | --- |
-| ... | niski / średni / wysoki | niski / średni / wysoki | ... | unikanie / mitigacja / transfer / akceptacja |
+| Ryzyko | Prawdopodobieństwo      | Wpływ                   | Priorytet | Strategia reagowania                         |
+| ------ | ------------------------ | ------------------------ | --------- | -------------------------------------------- |
+| ...    | niski / średni / wysoki | niski / średni / wysoki | ...       | unikanie / mitigacja / transfer / akceptacja |
 
 ### 5.2. Kontyngencje
 
@@ -323,6 +329,7 @@ Etap 1 [data] -> Etap 2 [data] -> Punkt kontrolny -> Etap 3 [data] -> Ukończeni
 ### 7.3. Założenia i ograniczenia
 
 Wypisz jawnie:
+
 - założenia przyjęte w planie,
 - ograniczenia, które mogą wpłynąć na realizację,
 - elementy niezweryfikowane wymagające potwierdzenia.
