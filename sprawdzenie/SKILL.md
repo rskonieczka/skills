@@ -126,6 +126,35 @@ Stosuj w podanej kolejności; niższe poziomy uruchamiaj dopiero, gdy wyższe ni
 
 Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## Koperta
+
+`sprawdzenie` uczestniczy w mechanizmie wymiany danych pipeline'u. Pełna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych między stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczęciem pracy odczytaj z koperty:
+- `stan.zamiar` -> `PYTANIE ŹRÓDŁOWE` (wymagane, kontekstowe),
+- `pola_stacji.realizuj.zmiany` + `pola_stacji.weryfikacja.werdykty` -> `ODPOWIEDŹ DO OCENY` / `ARTEFAKT DO AUDYTU` (wymagane, wnioskowane),
+- `pola_stacji.zmienne.sources_used` -> `ŹRÓDŁA PRAWDY` (opcjonalne, bezpośrednie).
+
+### Emisja (zapis do koperty)
+
+Po zakończeniu pracy emituj kopertę z:
+- `stacja_aktualna: sprawdzenie`,
+- `stacja_poprzednia: weryfikacja`,
+- `pola_stacji.sprawdzenie`: `status_audytu`, `ocena_calkowita`, `werdykt`, `wymiary` (7 wymiarów), `poprawiona_odpowiedz`,
+- `walidacja.stacja_docelowa: ewaluacja` (lub `utrwal` w ścieżce pełny, lub `ROZWIĄZANIE` w ścieżce szybki),
+- `walidacja.pola_wymagane` zależne od stacji docelowej,
+- `relacje`:
+  - `stacja:sprawdzenie` -> `stacja:ewaluacja` (lub `stacja:utrwal`) (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:sprawdzenie` (typ: `zawiera`),
+  - `stacja:sprawdzenie` -> `wymiar:WA1`, `wymiar:WA2`, ... (typ: `wyprodukowala`, per wymiar audytu),
+  - `wymiar:WA1` -> `zmiana:Z1` (typ: `weryfikuje`, per wymiar weryfikujący zmianę).
+
+Po wyemitowaniu koperty zapisz ją do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_09_sprawdzenie.yaml` i zaktualizuj manifest.
+
+Jeśli `status_audytu` to `niezgodny`, bramka jakości wraca do `dobierz`/`planuj` (zwiększ `iteracja_bramki` w manifeście, zapisz nowy checkpoint z sufiksem `_iter<N>`, zapisz nową krawędź `NASTAPILA_PO` do Memgraph z adnotacją iteracji).
+
 ## Wymiary audytu
 
 ### 1. Zgodność z pytaniem

@@ -99,6 +99,34 @@ Reguły specyficzne dla planowania:
 
 Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## Koperta
+
+`planuj` uczestniczy w mechanizmie wymiany danych pipeline'u. Pełna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych między stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczęciem pracy odczytaj z koperty:
+- Jeśli poprzednią stacją był `routing`: `pola_stacji.routing.sciezka` + `pola_stacji.dobierz.rekomendacja` -> `CEL DO ZAPLANOWANIA` (wnioskowane),
+- Jeśli poprzednią stacją był `dobierz` (gdy pominięto routing): `pola_stacji.dobierz.rekomendacja` -> `CEL DO ZAPLANOWANIA` (wnioskowane),
+- `pola_stacji.dobierz.ryzyka_i_warunki_rewizji` -> `OGRANICZENIA` (wnioskowane),
+- `stan.zamiar` -> `KONTEKST` (kontekstowe).
+
+### Emisja (zapis do koperty)
+
+Po zakończeniu pracy emituj kopertę z:
+- `stacja_aktualna: planuj`,
+- `stacja_poprzednia: routing` (lub `dobierz`),
+- `pola_stacji.planuj`: `plan` (pełny plan 7-sekcyjny), `kryteria_sukcesu`, `punkty_kontrolne`, `walidacja_planu`,
+- `walidacja.stacja_docelowa: realizuj`,
+- `walidacja.pola_wymagane: [PLAN DO ZREALIZOWANIA]` -> z `pola_stacji.planuj.plan` (bezpośrednie),
+- `relacje`:
+  - `stacja:planuj` -> `stacja:realizuj` (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:planuj` (typ: `zawiera`),
+  - `stacja:planuj` -> `krok:K1`, `krok:K2`, ... (typ: `wyprodukowala`, per krok planu),
+  - `krok:K1` -> `podproblem:P1` (typ: `rozwiazuje`, per krok rozwiązujący podproblem).
+
+Po wyemitowaniu koperty zapisz ją do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_06_planuj.yaml` i zaktualizuj manifest.
+
 ## Instrukcja główna
 
 Najpierw rozpoznaj, jaki typ planowania jest wymagany. Nie zakładaj z góry, że każdy plan ma tę samą strukturę.

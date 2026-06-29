@@ -62,7 +62,7 @@ Workflow przeszukiwania:
 
 ### Memgraph MCP (warstwa grafowa)
 
-Memgraph stanowi warstwę grafową uzupełniającą pamięć tekstową Serena. Służy do analizy relacji między encjami, mapy zależności, grafu wywołań i architektury przez Cypher.
+Memgraph stanowi warstwę grafową uzupełniającą pamięć tekstową Serena. Służy do analizy relacji między encjami, mapy zależności, grafu wywołań i architektury przez Cypher. W kontekście pipeline'u umiejętności Memgraph przechowuje graf powiązań run'u (stacje, zmienne, decyzje, twierdzenia, werdykty, wnioski). Schemat grafu pipeline'u, mapowanie koperty na węzły/krawędzie, wzorcowe zapytania Cypher i reguły integralności: patrz `graf-pipeline.md`.
 
 Stosuj gdy:
 - analizujesz relacje między encjami i zależności między modułami,

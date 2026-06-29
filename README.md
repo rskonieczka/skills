@@ -7,7 +7,8 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 ```text
 .
 ├── _shared/                 # Wspoldzielone sekcje referencyjne dla skilli
-│   └── zrodla-i-narzedzia.md  # Kanoniczna wersja: Zrodla prawdy + Narzedzia lokalne
+│   ├── zrodla-i-narzedzia.md  # Kanoniczna wersja: Zrodla prawdy + Narzedzia lokalne
+│   └── graf-pipeline.md       # Schemat grafu powiazan pipeline'u w Memgraph
 ├── analiza/                 # Uniwersalny prompt do analizy obiektow
 │   └── SKILL.md
 ├── context7/                # Pobieranie aktualnej dokumentacji bibliotek
@@ -24,6 +25,23 @@ Zbiór skilli (promptów operacyjnych) dla agenta AI pracującego w środowisku 
 │   └── SKILL.md
 ├── zmienne/                 # Uniwersalny kontrakt zmiennych dla agentow
 │   └── SKILL.md
+├── inicjuj/                 # Klasyfikacja zamiaru i punkt wejscia do pipeline'u
+│   └── SKILL.md
+├── dekompozycja/            # Podzial zlozonego problemu na podproblemy
+│   └── SKILL.md
+├── realizuj/                # Wykonanie zmian zgodnie z zaakceptowanym planem
+│   └── SKILL.md
+├── routing/                 # Wybor sciezki pipeline'u (szybki/pelny/doglebny)
+│   └── SKILL.md
+├── ewaluacja/               # Ocena ex-post skutecznosci i wartosci rozwiazania
+│   └── SKILL.md
+├── utrwal/                  # Zapis wiedzy do .ai-kb i pamieci Serena
+│   └── SKILL.md
+├── monitoruj/               # Sledzenie postepu, blokad i odchylen od planu
+│   └── SKILL.md
+├── audyt_runu/              # Audyt relacyjny run'u pipeline'u przez graf Memgraph
+│   └── SKILL.md
+├── pipeline_sklills.md      # Dokumentacja pipeline'u cyklu zycia rozwiazania
 ├── umiejetnosc_podstawy.md  # Przyklad analizy pojecia "umiejetnosc" (wyjatek: nie jest skillem)
 ├── _propmpt_tworzenia_skill.md  # Uniwersalny prompt do tworzenia i sprawdzania skilli (plik pomocniczy)
 └── README.md                # Niniejszy plik
@@ -133,6 +151,92 @@ Po frontmatterze nastepuje tresc instrukcji w jezyku polskim, zgodnie z globalny
 - **Typy zrodel:** `user_provided`, `verified_source`, `agent_inference`, `hypothesis`, `unavailable`
 - **Typy zmiennych:** `fact`, `requirement`, `constraint`, `assumption`, `hypothesis`, `metric`, `entity`, `relationship`, `risk`, `decision`, `preference`, `unknown`
 - **Tryby dzialania:** `analysis` (domyslny), `transformation`, `full`, `audit`
+
+### inicjuj
+
+- **Plik:** `inicjuj/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Rozpoznaje, czy zamiar uzytkownika wymaga uruchomienia pipeline'u, klasyfikuje go jako trywialne, rutynowe albo zlozone i ustala punkt wejscia.
+- **Argument:** `[ZAMIAR UZYTKOWNIKA] [opcjonalnie: KONTEKST, ZRODLA]`
+- **Klasyfikacje:** `trywialne`, `rutynowe`, `zlozone`
+- **Punkty wejscia:** `odpowiedz_bezposrednia`, `zmienne`, `analiza`, `dobierz`
+
+### dekompozycja
+
+- **Plik:** `dekompozycja/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Dzieli zlozony problem na podproblemy zalezne i niezalezne, ustala kolejnosc i warunki brzegowe rozwiazywania.
+- **Argument:** `[PROBLEM LUB CEL ZLOZONY] [opcjonalnie: KONTEKST, OGRANICZENIA, TRYB]`
+- **Tryby dekompozycji:** `szybki`, `pelny` (domyslny), `doglebny`
+- **Typy dekompozycji:** `funkcjonalna`, `warstwowa`, `przestrzenna`, `czasowa`, `zaleznosciowa`
+
+### realizuj
+
+- **Plik:** `realizuj/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Wykonuje zmiany w kodzie, konfiguracji albo artefaktach zgodnie z zaakceptowanym planem, korzystajac z zasady jak i dokumentacji context7.
+- **Argument:** `[PLAN DO ZREALIZOWANIA] [opcjonalnie: KONTEKST, ZRODLA, TRYB]`
+- **Tryby realizacji:** `szybki`, `pelny` (domyslny), `doglebny`
+- **Typy realizacji:** `kod`, `konfiguracja`, `infrastruktura`, `dokumentacja`, `artefakt`
+
+### routing
+
+- **Plik:** `routing/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Wybiera sciezke pipeline'u (szybki, pelny, doglebny) na podstawie stawki decyzyjnej, ryzyka, zasobow i poziomu niepewnosci.
+- **Argument:** `[ZAMIAR LUB PROBLEM] [opcjonalnie: STAWKA, RYZYKO, ZASOBY, TRYB]`
+- **Sciezki:** `szybki`, `pelny`, `doglebny`
+
+### ewaluacja
+
+- **Plik:** `ewaluacja/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Ocenia dlugoterminowa wartosc, skutecznosc i trafnosc rozwiazania po jego wdrozeniu, wykraczajac poza audyt zgodnosci.
+- **Argument:** `[ROZWIAZANIE LUB ARTEFAKT] [opcjonalnie: CEL ZRODLOWY, KRYTERIA, HORYZONT, TRYB]`
+- **Tryby ewaluacji:** `szybki`, `pelny` (domyslny), `doglebny`
+- **Wymiary:** Trafnosc, Skutecznosc, Wydajnosc, Trwalosc, Skalowalnosc
+
+### utrwal
+
+- **Plik:** `utrwal/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Zapisuje wnioski, decyzje, wzorce i pulapki do bazy wiedzy projektu i pamieci Serena po zakonczeniu zadania.
+- **Argument:** `[WNIOSKI LUB DECYZJE DO ZAPISANIA] [opcjonalnie: TYP WIEDZY, CEL, ZRODLA]`
+- **Typy wiedzy:** `decyzja`, `preferencja`, `blad`, `wzorzec`, `kamien_milowy`, `pulapka`, `zaleznosc`
+- **Miejsca zapisu:** `.ai-kb/`, pamiec Serena, Memgraph
+
+### monitoruj
+
+- **Plik:** `monitoruj/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Sledzi postep, blokady, zaleznosci i odchylenia od planu w zadaniach wieloetapowych, raportuje checkpointy i warunki przejscia.
+- **Argument:** `[ZADANIE LUB PLAN] [opcjonalnie: CHECKPOINTY, METRYKI, TRYB]`
+- **Tryby monitorowania:** `szybki`, `pelny` (domyslny)
+- **Typy monitorowania:** `checkpointowy`, `metryczny`, `blokad`, `odchylen`
+
+### audyt_runu
+
+- **Plik:** `audyt_runu/SKILL.md`
+- **Wersja:** 1.0.0
+- **Opis:** Weryfikuje ex-post spojnosc calego run'u pipeline'u przez graf Memgraph: integralnosc checkpointow, spojnosc grafu, osierocone wezly, brakujace krawedzie, anomalie relacyjne.
+- **Argument:** `[RUN_ID] [opcjonalnie: TRYB AUDYTU, ZAKRES]`
+- **Tryby audytu:** `szybki`, `pelny` (domyslny), `doglebny`
+- **Wymiary audytu:** integralnosc checkpointow, spojnosc grafu, osierocone wezly, spojnosc checkpointy-graf, reguly integralnosci, relacje miedzy runami, wykrywanie anomalii
+
+## Pipeline umiejetnosci
+
+Plik `pipeline_sklills.md` zawiera dokumentacje pipeline'u orkiestrujacego skille w cykl zycia rozwiazania: od zamiaru uzytkownika do zweryfikowanego, ocenionego i utrwalonego wyniku. Skille sa stacjami montazowymi z kontraktami wejscia/wyjscia i bramka jakosci.
+
+Sciezki pipeline'u:
+- `szybki` - niska stawka, niskie ryzyko (zmienne -> analiza -> dobierz -> sprawdzenie),
+- `pelny` - srednia stawka, srednie ryzyko (pelny pipeline bez dekompozycji i ewaluacji),
+- `doglebny` - wysoka stawka, wysokie ryzyko (pelny pipeline ze wszystkimi stacjami).
+
+Mechanizm wymiany danych miedzy stacjami: pipeline uzywa formalnego nosnika danych (koperty YAML) z walidacja kompletnosci i checkpointowaniem plikowym w `.ai-kb/pipeline-runs/<run_id>/`. Szczegoly: patrz `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych miedzy stacjami") oraz `kontrakty_pipelines.md`.
+
+Graf powiazan w Memgraph: pipeline zapisuje relacje miedzy encjami w run'ie (stacje, zmienne, decyzje, twierdzenia, werdykty, wnioski) do Memgraph jako graf. Audyt relacyjny run'u wykonuje skill `audyt_runu`. Schemat grafu, wzorcowe zapytania Cypher i reguly integralnosci: patrz `_shared/graf-pipeline.md`.
+
+Szczegoly: patrz `pipeline_sklills.md`.
 
 ## Plik przykladu
 

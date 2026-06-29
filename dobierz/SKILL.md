@@ -136,6 +136,34 @@ Reguły specyficzne dla doboru:
 
 Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## Koperta
+
+`dobierz` uczestniczy w mechanizmie wymiany danych pipeline'u. Pełna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych między stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczęciem pracy odczytaj z koperty:
+- Jeśli poprzednią stacją był `dekompozycja`: `pola_stacji.dekompozycja.podproblemy` -> `CEL DOBORU` + `WARIANTY` (wnioskowane),
+- Jeśli poprzednią stacją był `analiza` (gdy pominięto dekompozycję): `pola_stacji.analiza.raport_streszczenie` -> `CEL DOBORU` + `WARIANTY` (wnioskowane),
+- `stan.zamiar` -> `KONTEKST` (kontekstowe),
+- `pola_stacji.zmienne.variables` -> `KRYTERIA` / `OGRANICZENIA` (wnioskowane, jeśli dostępne).
+
+### Emisja (zapis do koperty)
+
+Po zakończeniu pracy emituj kopertę z:
+- `stacja_aktualna: dobierz`,
+- `stacja_poprzednia: dekompozycja` (lub `analiza`),
+- `pola_stacji.dobierz`: `status_doboru`, `metoda_doboru`, `rekomendacja` (główna), `rekomendacja_rezerwowa`, `ryzyka_i_warunki_rewizji`, `najblizszy_krok`,
+- `walidacja.stacja_docelowa: routing` (lub `planuj` gdy pominięto routing),
+- `walidacja.pola_wymagane: [ZAMIAR LUB PROBLEM]` -> z `stan.zamiar` (kontekstowe),
+- `relacje`:
+  - `stacja:dobierz` -> `stacja:routing` (lub `stacja:planuj`) (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:dobierz` (typ: `zawiera`),
+  - `stacja:dobierz` -> `decyzja:D001` (typ: `wyprodukowala`, dla rekomendacji),
+  - `decyzja:D001` -> `zmienna:V001`, ... (typ: `oparta_na`, per zmienna użyta w uzasadnieniu rekomendacji).
+
+Po wyemitowaniu koperty zapisz ją do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_04_dobierz.yaml` i zaktualizuj manifest.
+
 ## Analiza pojęciowa doboru
 
 ### Definicja

@@ -113,6 +113,34 @@ Reguly specyficzne dla weryfikacji:
 
 Tabele narzedzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## Koperta
+
+`weryfikacja` uczestniczy w mechanizmie wymiany danych pipeline'u. Pelna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych miedzy stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczeciem pracy odczytaj z koperty emitowanej przez `realizuj`:
+- `pola_stacji.realizuj.zmiany` -> `TWIERDZENIE LUB ZBIOR TWIERDZEN` (wymagane, wnioskowane - kazda zmiana implikuje twierdzenie do weryfikacji),
+- `pola_stacji.planuj.kryteria_sukcesu` -> `KRYTERIUM WERYFIKACJI` (opcjonalne, wnioskowane),
+- `pola_stacji.zmienne.sources_used` -> `ZRODLA` (opcjonalne, bezposrednie).
+
+### Emisja (zapis do koperty)
+
+Po zakonczeniu pracy emituj koperte z:
+- `stacja_aktualna: weryfikacja`,
+- `stacja_poprzednia: realizuj`,
+- `pola_stacji.weryfikacja`: `werdykty` (lista z `Status`, `Zrodlo`, `Metoda`, `Uzasadnienie`), `konflikty_zrodel`, `braki_dowodowe`, `podsumowanie`,
+- `walidacja.stacja_docelowa: sprawdzenie`,
+- `walidacja.pola_wymagane: [PYTANIE ZRODLOWE, ODPOWIEDZ DO OCENY]` -> `PYTANIE ZRODLOWE` z `stan.zamiar` (kontekstowe), `ODPOWIEDZ` z `pola_stacji.realizuj.zmiany` (wnioskowane),
+- `relacje`:
+  - `stacja:weryfikacja` -> `stacja:sprawdzenie` (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:weryfikacja` (typ: `zawiera`),
+  - `stacja:weryfikacja` -> `twierdzenie:T1`, `twierdzenie:T2`, ... (typ: `wyprodukowala`, per twierdzenie),
+  - `stacja:weryfikacja` -> `werdykt:W1`, `werdykt:W2`, ... (typ: `wyprodukowala`, per werdykt),
+  - `werdykt:W1` -> `twierdzenie:T1` (typ: `dotyczy`, per werdykt dotyczący twierdzenia).
+
+Po wyemitowaniu koperty zapisz ja do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_08_weryfikacja.yaml` i zaktualizuj manifest.
+
 ## Statusy werdyktu
 
 Kazde twierdzenie po weryfikacji otrzymuje jeden z czterech statusow:

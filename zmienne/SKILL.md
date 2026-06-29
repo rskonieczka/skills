@@ -79,6 +79,33 @@ Reguły źródeł:
 
 Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## 3.2. Koperta
+
+`zmienne` uczestniczy w mechanizmie wymiany danych pipeline'u. Pełna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych między stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczęciem pracy odczytaj z koperty emitowanej przez `inicjuj`:
+- `stan.zamiar` -> `task_goal` (wymagane, kontekstowe),
+- `pola_stacji.inicjuj.uzasadnienie` -> `context` (opcjonalne, wnioskowane),
+- `pola_stacji.inicjuj.ryzyka` -> `context` (opcjonalne, wnioskowane).
+
+### Emisja (zapis do koperty)
+
+Po zakończeniu pracy emituj kopertę z:
+- `stacja_aktualna: zmienne`,
+- `stacja_poprzednia: inicjuj`,
+- `pola_stacji.zmienne`: `variables`, `relations`, `sources_used`, `missing_data_resolution`, `analysis_object.name` (kluczowe dla `analiza`),
+- `walidacja.stacja_docelowa: analiza`,
+- `walidacja.pola_wymagane: [NAZWA OBIEKTU]` -> sprawdź `pola_stacji.zmienne.analysis_object.name`,
+- `relacje`: lista relacji między encjami wyprodukowanymi przez `zmienne`:
+  - `stacja:zmienne` -> `stacja:analiza` (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:zmienne` (typ: `zawiera`),
+  - `stacja:zmienne` -> `zmienna:V001`, `zmienna:V002`, ... (typ: `wyprodukowala`, per zmienna),
+  - `zmienna:V001` -> `zmienna:V003` (typ: `zalezy_od`, per relacja z `relations[]`).
+
+Po wyemitowaniu koperty zapisz ją do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_01_zmienne.yaml` i zaktualizuj manifest (patrz `utrwal/SKILL.md` - "Checkpoint po stacji").
+
 ## 4. Minimalne dane wejściowe
 
 Do rozpoczęcia pracy wystarczy jeden z poniższych zestawów:

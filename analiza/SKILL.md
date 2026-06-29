@@ -93,6 +93,32 @@ Reguły specyficzne dla analizy:
 
 Tabele narzędzi, workflow przeszukiwania i workflow grafowy: patrz `_shared/zrodla-i-narzedzia.md`.
 
+## Koperta
+
+`analiza` uczestniczy w mechanizmie wymiany danych pipeline'u. Pełna specyfikacja: `pipeline_sklills.md` (sekcja "Mechanizm wymiany danych między stacjami").
+
+### Konsumpcja (odczyt z koperty)
+
+Przed rozpoczęciem pracy odczytaj z koperty emitowanej przez `zmienne`:
+- `pola_stacji.zmienne.analysis_object.name` -> `NAZWA OBIEKTU` (wymagane, bezpośrednie),
+- `pola_stacji.zmienne.variables` -> `KONTEKST` (opcjonalne, wnioskowane),
+- `pola_stacji.zmienne.sources_used` -> `ŹRÓDŁA` (opcjonalne, bezpośrednie),
+- `pola_stacji.zmienne.relations` -> `KONTEKST` (opcjonalne, wnioskowane).
+
+### Emisja (zapis do koperty)
+
+Po zakończeniu pracy emituj kopertę z:
+- `stacja_aktualna: analiza`,
+- `stacja_poprzednia: zmienne`,
+- `pola_stacji.analiza`: `raport_streszczenie` (skrót raportu 7-sekcyjnego), `pewnosc` (poziom pewności rozpoznania), `ograniczenia` (sekcja 6), `wnioski` (sekcja 7 - kluczowe dla `dekompozycja`),
+- `walidacja.stacja_docelowa: dekompozycja` (lub `dobierz` gdy pominięto dekompozycję),
+- `walidacja.pola_wymagane: [PROBLEM LUB CEL ZŁOŻONY]` -> wnioskowane z `wnioski` + `ograniczenia` (`agent_inference`),
+- `relacje`:
+  - `stacja:analiza` -> `stacja:dekompozycja` (lub `stacja:dobierz`) (typ: `nastapila_po`),
+  - `run:<run_id>` -> `stacja:analiza` (typ: `zawiera`).
+
+Po wyemitowaniu koperty zapisz ją do checkpointu `.ai-kb/pipeline-runs/<run_id>/stan_02_analiza.yaml` i zaktualizuj manifest.
+
 ## Instrukcja główna
 
 Najpierw rozpoznaj, czym jest analizowany obiekt. Nie zakładaj z góry jego typu.
